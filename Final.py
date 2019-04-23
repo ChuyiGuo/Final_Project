@@ -200,8 +200,8 @@ if __name__ == '__main__':
 
     #
     result_fare = simulate_revenue_moreday(10000,fare,210)
-    result_fare_increase = simulate_revenue_moreday(10000, fare, 210*0.98)
-    result_fare_decrease = simulate_revenue_moreday(10000, fare, 210*1.02)
+    result_fare_increase = simulate_revenue_moreday(10000, fare_increase, 210*0.98)
+    result_fare_decrease = simulate_revenue_moreday(10000, fare_decrease, 210*1.02)
 
 
     sns.distplot(result_fare, hist=False, kde=True,label = 'Current fare',color='r')
