@@ -58,6 +58,11 @@ Assume the probability of carrying a pet, a bicycle and a golf clubs are 5%, 10%
 
 #### **Hypothesis:**
 
+According to Transportation Research Board report 95, the railroad fare elasticity (gives the percentage change in quantity demanded in response to a one percent change in price) is about -0.2.  The elasticity indicates if increasing fare, the number of passengers will decrease.
+
+Hypotheses 1: If fare is increased by 10%, although the number of passengers will reduce proportionally, the total revenue will increase. 
+
+Hypotheses 2: Total revenue of increasing fare by 10% is lager than the one of decreasing fare by 10%.
 
 
 #### **Data Sources:**
