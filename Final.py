@@ -21,8 +21,9 @@ class Passenger:
         self.add_ons = add_ons
 
     def discount(self):
-        """For different passenger types, different discount rate are provided.
-        Seniors will get 10% discount and children will get 50% discount
+        """For different types of passengers, different discount rate are provided.
+        Seniors will get 10% discount and children will get 50% discount.
+        Get the discount for the passenger.
 
         :return: discount for the passenger
         >>> self.age_group = 'child'
@@ -43,9 +44,10 @@ class Passenger:
         return discount
 
     def fare_type(self):
-        """Generally two types of fare are provided. One is the business fare, the other one is sleeper fare.
+        """Generally two types of fare are provided. One is the business and another is sleeper.
         Business fare is lower than sleeper fare and it's more suitable for short trips.
         On the opposite, passengers on a long journey are more likely to choose sleeper fare.
+        Estimate the type of fare chosen by passenger, given his travel distance.
 
         :return: the type of fare chosen by passenger
         """
@@ -64,9 +66,10 @@ class Passenger:
         return str(type)
 
     def add_pay(self):
-        """Amtrak allows pets, bicycles and  for a fee.
+        """Amtrak allows pets, bicycles and golf clubs for a fee.
+        Calculate the total fee needed to pay for the add-ons.
 
-        :return: the total amount needed to pay for the add_ons
+        :return: the total amount needed to pay for the add-ons
         """
         add = 0
         if self.add_ons:
@@ -81,8 +84,10 @@ class Passenger:
 
 # simulate passenger info
 def age_group():
-        """According to Amtrak's, each passenger are divided into different passenger type by age.
-        Each passenger belongs to adult, senior or child.
+        """ Simulate an age_group for a passenger with pre-defined probabilities.
+        According to Amtrak's, each passenger are divided into different passenger type by age.
+        Each passenger belongs to adult, senior or child with probabilities of
+        10%, 81.5% and 8.%, respectively.
 
         :return: adult, senior or child
         """
@@ -92,9 +97,16 @@ def age_group():
         return str(age_group)
 
 def distance():
-    """
+    """Simulate an travel distance for a passenger with pre-defined probabilities.
+    First divided the travel distance in to the following intervals:
+    45-99, 100-199, 200-299, 300-399, 400-499, 500-599, 600-699, 700-799, 805, 806-2200
+    Then assign the following probabilities to each interval:
+    [0.059, 0.899, 0.0005, 0.013, 0.0005, 0.002, 0.008, 0.003, 0.014, 0.001]
+    The distance range is picked by the given probabilities.
+    Assume within each distance range, the values are uniformly distributed.
+    After getting the distance range, randomly pick a value as the travel distance from that range.
 
-    :return:
+    :return: travel distance for a passenger
     """
     distance_prob = [0.059, 0.899, 0.0005, 0.013, 0.0005, 0.002, 0.008, 0.003, 0.014, 0.001]
     distance_group = [99, 199, 299, 399, 499, 599, 699, 799, 805, 2200]
@@ -110,10 +122,13 @@ def distance():
     return distance
 
 def add_ons():
-    """
+    """Simulate add-on items for a passenger with pre-defined probabilities.
     Each passenger is allowed to add a bike, pet or golf clubs to the trip.
     Bike, pet and golf clubs can be added at the same time, but the max quantity for each is one.
-    :return:
+    Add-ons are independent of each other.
+    The probabilities of carrying a pet, a bike and a golf club is 5%, 10%, 5%, respectively.
+
+    :return: add-on items for a passenger
     """
     add = []
     pet_prob = [0.05, 0.95]
@@ -130,35 +145,33 @@ def add_ons():
 
 
 def simulate_num_passenger(mean):
-    """ The number of passengers obeys Poisson distribution
+    """ simulate the daily passenger number for Champaign-Urbana Amtrak
+    The number of passengers follows Poisson distribution
 
-    :param mean:
-    :return: simulated number of passgengers
+    :param mean: expected daily passenger number
+    :return: number of passgengers for a day
     """
-
-    # np.random.seed(seed)
     return np.random.poisson(mean, 1)
 
 def get_fare_pay(fare: dict, distance: int, fare_type: str, discount: float) -> float:
-    """
+    """ Calculate the exact fare for a passenger, given his travel distance, fare type and discount.
 
-    :param fare:
-    :param distance:
-    :param fare_type:
+    :param fare: price per mile by taking the Amtrak train
+    :param distance: travel distance (mile)
+    :param fare_type: the fare type that the passgener chose. business/sleeper
     :param age_group:
-    :param add_ons:
-    :return: revenue for one passenger
+    :return: total pay for getting the ticket
     >>> fare = {'business':1,'sleeper':2}
     >>> distance=100
     >>> fare_type='business'
     >>> discount=1
-    >>> get_revenue(fare, distance, fare_type, discount)
+    >>> get_fare_pay(fare, distance, fare_type, discount)
     100
     >>> discount2=0.5
-    >>> get_revenue(fare, distance, fare_type, discount2)
+    >>> get_fare_pay(fare, distance, fare_type, discount2)
     50.0
     >>> fare_type2='sleeper'
-    >>> get_revenue(fare, distance, fare_type2, discount)
+    >>> get_fare_pay(fare, distance, fare_type2, discount)
     200
     """
     revenue = distance * fare[fare_type] * discount
@@ -166,6 +179,12 @@ def get_fare_pay(fare: dict, distance: int, fare_type: str, discount: float) -> 
 
 # num = simulate_num_passenger(210)[0]
 def simulate_revenue_oneday(fare,num):
+    """ calculate the daily revenue, including price for the tickets and fee for the add-on items.
+
+    :param fare: fare rate for business and sleeper fare type
+    :param num: number of expected number of passengers for a day
+    :return: daily revenue
+    """
     total_revenue = 0
     for i in range(num):
         passenger = Passenger(age_group(), distance(), add_ons())
@@ -174,6 +193,13 @@ def simulate_revenue_oneday(fare,num):
     return round(total_revenue,2)
 
 def simulate_revenue_moreday(times,fare,num):
+    """calculate the daily revenue, including price for the tickets and fee for the add-on items.
+
+    :param times: times for repeating the simulate_revenue_oneday process
+    :param fare: fare rate for business and sleeper fare type
+    :param num: number of expected number of passengers for a day
+    :return: list with each day's revenue stored
+    """
     sim_revenue = []
     for i in range(times):
         number = simulate_num_passenger(num)[0]
