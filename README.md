@@ -63,24 +63,23 @@ According to Transportation Research Board Report 95, the railroad fare elastici
 In order for Amtrak to increase its revenue, should it increase the fare rate to have more gain of a single ticket sold or decrease fare rate to attract more passengers?
 
 **Hypotheses 1**
-If the fare is increased by 10%, although the number of passengers will shrink proportionally, the total revenue will increase. 
+If the fare is increased by 10%, although the number of passengers will shrink proportionally, the total revenue will increase.
 
 **Hypotheses 2**
 Total revenue of increasing fare by 10% is larger than that of decreasing fare by 10%.
 
 #### **Results:**
-1.Increase fare generates the highest revenue;
-2.Decrease fare generates the lowest revenue;
-3.The revenue from the current fare is somewhere in the middle.
+1. Increase fare generates the highest revenue;
+2. Decrease fare generates the lowest revenue;
+3. The revenue from the current fare is somewhere in the middle.
 
 
 #### **Limitations and Future Work:**
-1.Travel distance should estimated by the distance among train stations.
-2.There are other types of fare, like saver fare.
-3.Refunds are not considered. 
-4.Some of the train routine do not provide service for all of the three add-ons.
-5.The elasticity used may be out of date.
-
+1. Travel distance should estimated by the distance among train stations.
+2. There are other types of fare, like saver fare.
+3. Refunds are not considered. 
+4. Some of the train routine do not provide service for all of the three add-ons.
+5. The elasticity used may be out of date.
 
 #### **Data Sources:**
 https://www.railpassengers.org/site/assets/files/1800/chm.pdf
