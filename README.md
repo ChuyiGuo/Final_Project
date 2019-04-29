@@ -53,14 +53,14 @@ Each passenger will be randomly assigned to a group with corresponding probabili
 
 Assume the probability of carrying a pet, a bicycle and a golf clubs are 5%, 10%, 5%, respectively. 
 
-### **Assumptions:**
-1. The trains will not be full.
-2. Only two types of fare available: business and sleeper. 
-
 ### **Other facts:**
 1. The fee for carrying pet, bike and golf clubs are $26, $10 and $10, respectively. 
 2. Average fares per mile of business and sleeper are $0.166 and $0.283, respectively.
 3. The avenvue for one passenger is distance*fare*discount + add-on fee.
+
+### **Assumptions:**
+1. The trains will not be full.
+2. Only two types of fare available: business and sleeper. 
 
 ### **Hypothesis:**
 
