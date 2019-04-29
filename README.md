@@ -1,19 +1,19 @@
 # Final_Project
 ### **IS590PR Spring 2019**
 
-#### **Title:**
+### **Title:**
 Monte Carlo Simulation of the daily revenue for Champaign-Urbana Amtrak
 
-#### **Team Member:**
+### **Team Member:**
 Chuyi Guo
 
-#### **Scenario & Purpose:**
+### **Scenario & Purpose:**
 This project is aimed to simulate the daily revenue of Champaign-Urbana Amtrak for trains departing from Champaign-Urbana.
 
 The revenue comes from selling train tickets and is determined by the number of passengers and their fares. Generally, Amtrak provides two categories of fares. One is business and another is sleeper. The sleeper provides sleeping accommodation and is usually chosen by passengers on a long journey. Fares are also affected by the travel distance. Moreover, Amtrak allows add-ons such as pets, bicycles and Golf Clubs for a fee. 
 
 
-#### **Simulation's variables of uncertainty:**
+### **Simulation's variables of uncertainty:**
 
 According to Amtrak Ridership Statistics from Rail Passengers Association(https://www.railpassengers.org/site/assets/files/1800/chm.pdf), distributions of Number of passengers, Travel distance and Fare type are made as follows:
 
@@ -53,35 +53,35 @@ Each passenger will be randomly assigned to a group with corresponding probabili
 
 Assume the probability of carrying a pet, a bicycle and a golf clubs are 5%, 10%, 5%, respectively. 
 
-#### **Assumptions:**
+### **Assumptions:**
 1. The trains will not be full.
 2. Only two types of fare available: business and sleeper. 
 
-#### **Hypothesis:**
+### **Hypothesis:**
 
 According to Transportation Research Board Report 95, the railroad fare elasticity (the percentage change in quantity demanded in response to a one percent change in price) is about -0.2. The elasticity indicates the rate of decrease in passenger number with increasing fare.
 In order for Amtrak to increase its revenue, should it increase the fare rate to have more gain of a single ticket sold or decrease fare rate to attract more passengers?
 
-**Hypotheses 1**
-If the fare is increased by 10%, although the number of passengers will shrink proportionally, the total revenue will increase.
+**Hypotheses 1:**
+If the fare is increased by 10%, although the number of passengers will shrink proportionally, the total revenue will increase.
 
-**Hypotheses 2**
+**Hypotheses 2:**
 Total revenue of increasing fare by 10% is larger than that of decreasing fare by 10%.
 
-#### **Results:**
+### **Results:**
 1. Increase fare generates the highest revenue;
 2. Decrease fare generates the lowest revenue;
 3. The revenue from the current fare is somewhere in the middle.
 
 
-#### **Limitations and Future Work:**
+### **Limitations and Future Work:**
 1. Travel distance should estimated by the distance among train stations.
 2. There are other types of fare, like saver fare.
 3. Refunds are not considered. 
 4. Some of the train routine do not provide service for all of the three add-ons.
 5. The elasticity used may be out of date.
 
-#### **Data Sources:**
+### **Data Sources:**
 https://www.railpassengers.org/site/assets/files/1800/chm.pdf
 
 https://www.census.gov/quickfacts/fact/table/champaigncountyillinois/AGE295217
