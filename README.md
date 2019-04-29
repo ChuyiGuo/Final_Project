@@ -57,6 +57,11 @@ Assume the probability of carrying a pet, a bicycle and a golf clubs are 5%, 10%
 1. The trains will not be full.
 2. Only two types of fare available: business and sleeper. 
 
+### **Other facts:**
+1. The fee for carrying pet, bike and golf clubs are $26, $10 and $10, respectively. 
+2. Average fares per mile of business and sleeper are $0.166 and $0.283, respectively.
+3. The avenvue for one passenger is distance*fare*discount + add-on fee.
+
 ### **Hypothesis:**
 
 According to Transportation Research Board Report 95, the railroad fare elasticity (the percentage change in quantity demanded in response to a one percent change in price) is about -0.2. The elasticity indicates the rate of decrease in passenger number with increasing fare.

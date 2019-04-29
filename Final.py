@@ -1,7 +1,7 @@
 """
 IS590PR Spring2019 Final Project
 
-Monte Carlo Simulation of the daily revenue for Champaign-Urbana Amtrak service.
+Monte Carlo Simulation of the Daily Revenue of Champaign-Urbana Amtrak
 
 Chuyi Guo (cguo12)
 """
@@ -32,6 +32,8 @@ class Passenger:
         0.9
         >>> self.age_group = 'adult'
         1
+        >>> self.age_group = 'youth'
+        unknown type
         """
         if self.age_group == 'child':
             discount = 0.5
@@ -62,7 +64,6 @@ class Passenger:
                 sleeper_prob = 1
             fare_prob_long_distance = [1 - sleeper_prob, sleeper_prob]
             type = np.random.choice(fare_type, 1, p=fare_prob_long_distance)[0]
-
         return str(type)
 
     def add_pay(self):
@@ -91,7 +92,7 @@ def age_group():
 
         :return: adult, senior or child
         """
-        age_prob = [0.1, 0.815, 0.085]
+        age_prob = [0.15, 0.726, 0.124]
         group = ['child', 'adult', 'senior']
         age_group = np.random.choice(group, 1, p=age_prob)[0]
         return str(age_group)
@@ -225,9 +226,9 @@ if __name__ == '__main__':
     }
 
     #
-    result_fare = simulate_revenue_moreday(10000,fare,210)
-    result_fare_increase = simulate_revenue_moreday(10000, fare_increase, 210*0.98)
-    result_fare_decrease = simulate_revenue_moreday(10000, fare_decrease, 210*1.02)
+    result_fare = simulate_revenue_moreday(10,fare,210)
+    result_fare_increase = simulate_revenue_moreday(10, fare_increase, 210*0.98)
+    result_fare_decrease = simulate_revenue_moreday(10, fare_decrease, 210*1.02)
 
 
     sns.distplot(result_fare, hist=False, kde=True,label = 'Current fare',color='r')
