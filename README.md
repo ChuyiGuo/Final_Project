@@ -68,12 +68,13 @@ According to Transportation Research Board Report 95, the railroad fare elastici
 In order for Amtrak to increase its revenue, should it increase the fare rate to have more gain of a single ticket sold or decrease fare rate to attract more passengers?
 
 **Hypotheses 1:**
-If the fare is increased by 10%, although the number of passengers will shrink proportionally, the total revenue will increase.
+If the fare is increased by 10%, although the number of passengers will shrink proportionally, the total expected revenue will increase.
 
 **Hypotheses 2:**
-Total revenue of increasing fare by 10% is larger than that of decreasing fare by 10%.
+Total expected revenue of increasing fare by 10% is larger than that of decreasing fare by 10%.
 
 ### **Results:**
+The expected daily revenue with current fare is 6244.53; the expected daily revenue with increasing fare by 10% is 6696.59; the expected daily revenue with decreasing fare by 10% is 5806.68.
 1. Increase fare generates the highest revenue;
 2. Decrease fare generates the lowest revenue;
 3. The revenue from the current fare is somewhere in the middle.
