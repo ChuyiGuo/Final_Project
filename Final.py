@@ -91,6 +91,8 @@ def age_group() ->str:
         15%, 72.6% and 12.4%, respectively.
 
         :return: 'adult', 'senior' or 'child'
+        >>> age_group() in ['adult', 'senior' ,'child']
+        True
         """
         age_prob = [0.15, 0.726, 0.124]
         group = ['child', 'adult', 'senior']
@@ -108,6 +110,8 @@ def distance():
     After getting the distance range, randomly pick a value as the travel distance from that range.
 
     :return: travel distance for a passenger
+    >>> 45<=distance()<=2200
+    True
     """
     distance_prob = [0.059, 0.899, 0.0005, 0.013, 0.0005, 0.002, 0.008, 0.003, 0.014, 0.001]
     distance_group = [99, 199, 299, 399, 499, 599, 699, 799, 805, 2200]
@@ -130,6 +134,8 @@ def add_ons() ->list:
     The probabilities of carrying a pet, a bike and a golf club is 5%, 10%, 5%, respectively.
 
     :return: add-on items for a passenger
+    >>> add_ons() in [[],['pet'],['bike'],['golf'],['pet','bike'],['pet','golf'],['bike','golf'],['pet','bike','golf']]
+    True
     """
     add = []
     pet_prob = [0.05, 0.95]
@@ -244,17 +250,7 @@ if __name__ == '__main__':
           "The mean of daily revenue with increasing fare by 10% is " + str(round(np.mean(result_fare_increase),2)) + "\n" +
           "The mean of daily revenue with decreasing fare by 10% is " + str(round(np.mean(result_fare_decrease),2)))
 
-    h1=[]
-    h2=[]
-    for i in range(100):
-        t1 = np.mean(result_fare[i*100:i*100+100])
-        t2 = np.mean(result_fare_increase[i * 100: i * 100 + 100])
-        t3 = np.mean(result_fare_decrease[i * 100: i * 100 + 100])
-        h1.append(t2>t1)
-        h2.append(t2>t3)
-    prob_hypo1 = np.sum(np.array(h1)) / len(h1)
-    prob_hypo2 = np.sum(np.array(h2)) / len(h2)
-    print()
+
 
 
 
