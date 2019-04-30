@@ -84,18 +84,18 @@ class Passenger:
 
 
 # simulate passenger info
-def age_group():
+def age_group() ->str:
         """ Simulate an age_group for a passenger with pre-defined probabilities.
         According to Amtrak's, each passenger are divided into different passenger type by age.
         Each passenger belongs to adult, senior or child with probabilities of
-        10%, 81.5% and 8.%, respectively.
+        15%, 72.6% and 12.4%, respectively.
 
-        :return: adult, senior or child
+        :return: 'adult', 'senior' or 'child'
         """
         age_prob = [0.15, 0.726, 0.124]
         group = ['child', 'adult', 'senior']
         age_group = np.random.choice(group, 1, p=age_prob)[0]
-        return str(age_group)
+        return age_group
 
 def distance():
     """Simulate an travel distance for a passenger with pre-defined probabilities.
@@ -122,7 +122,7 @@ def distance():
         distance = randint(806, distance_range)
     return distance
 
-def add_ons():
+def add_ons() ->list:
     """Simulate add-on items for a passenger with pre-defined probabilities.
     Each passenger is allowed to add a bike, pet or golf clubs to the trip.
     Bike, pet and golf clubs can be added at the same time, but the max quantity for each is one.
@@ -144,13 +144,12 @@ def add_ons():
         add.append('golf')
     return add
 
-
 def simulate_num_passenger(mean):
     """ simulate the daily passenger number for Champaign-Urbana Amtrak
     The number of passengers follows Poisson distribution
 
     :param mean: expected daily passenger number
-    :return: number of passgengers for a day
+    :return: number of passengers for a day
     """
     return np.random.poisson(mean, 1)
 
@@ -178,7 +177,7 @@ def get_fare_pay(fare: dict, distance: int, fare_type: str, discount: float) -> 
     revenue = distance * fare[fare_type] * discount
     return revenue
 
-# num = simulate_num_passenger(210)[0]
+
 def simulate_revenue_oneday(fare,num):
     """ calculate the daily revenue, including price for the tickets and fee for the add-on items.
 
@@ -209,27 +208,29 @@ def simulate_revenue_moreday(times,fare,num):
 
 if __name__ == '__main__':
 
-
+    # the current fare of Amtrak
     fare = {
         'business': 0.166,
         'sleeper': 0.283
     }
-
+    # increase the fare by 10%
     fare_increase = {
         'business': 0.166*1.1,
         'sleeper': 0.283*1.1
     }
-
+    # decrease the fare by 10%
     fare_decrease = {
         'business': 0.166*0.9,
         'sleeper': 0.283*0.9
     }
 
-    #
-    result_fare = simulate_revenue_moreday(10,fare,210)
-    result_fare_increase = simulate_revenue_moreday(10, fare_increase, 210*0.98)
-    result_fare_decrease = simulate_revenue_moreday(10, fare_decrease, 210*1.02)
-
+    # simulate 10000 times for each scenarios
+    # simulation for current fare with expected 210 passengers per day
+    result_fare = simulate_revenue_moreday(10000,fare,210)
+    # simulation for increase the fare by 10% with expected passengers lower by 2%
+    result_fare_increase = simulate_revenue_moreday(10000, fare_increase, 210*0.98)
+    # simulation for decrease the fare by 10% with expected passengers higher by 2%
+    result_fare_decrease = simulate_revenue_moreday(10000, fare_decrease, 210*1.02)
 
     sns.distplot(result_fare, hist=False, kde=True,label = 'Current fare',color='r')
     plt.axvline(x = np.mean(result_fare),color='r')
@@ -239,6 +240,10 @@ if __name__ == '__main__':
     plt.axvline(x=np.mean(result_fare_decrease), color='blue')
     plt.show()
 
+    print("The mean of daily revenue with current fare is " + str(round(np.mean(result_fare),2)) +"\n" +
+          "The mean of daily revenue with increasing fare by 10% is " + str(round(np.mean(result_fare_increase),2)) + "\n" +
+          "The mean of daily revenue with decreasing fare by 10% is " + str(round(np.mean(result_fare_decrease),2)))
+
     h1=[]
     h2=[]
     for i in range(100):
@@ -247,6 +252,11 @@ if __name__ == '__main__':
         t3 = np.mean(result_fare_decrease[i * 100: i * 100 + 100])
         h1.append(t2>t1)
         h2.append(t2>t3)
+    prob_hypo1 = np.sum(np.array(h1)) / len(h1)
+    prob_hypo2 = np.sum(np.array(h2)) / len(h2)
+    print()
+
+
 
 
 
