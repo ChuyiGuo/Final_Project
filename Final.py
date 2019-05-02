@@ -26,14 +26,19 @@ class Passenger:
         Get the discount for the passenger.
 
         :return: discount for the passenger
-        >>> self.age_group = 'child'
+        >>> p = Passenger('child',150,[])
+        >>> p.discount()
         0.5
-        >>> self.age_group = 'senior'
+        >>> p = Passenger('senior',150,[])
+        >>> p.discount()
         0.9
-        >>> self.age_group = 'adult'
+        >>> p = Passenger('adult',150,[])
+        >>> p.discount()
         1
-        >>> self.age_group = 'youth'
-        unknown type
+        >>> p = Passenger('youth',150,[])
+        >>> p.discount()
+        Traceback (most recent call last):
+        ValueError: unknown type
         """
         if self.age_group == 'child':
             discount = 0.5
@@ -52,6 +57,9 @@ class Passenger:
         Estimate the type of fare chosen by passenger, given his travel distance.
 
         :return: the type of fare chosen by passenger
+        >>> p = Passenger('adult',150,[])
+        >>> p.fare_type() in ['business', 'sleeper']
+        True
         """
         fare_type = ['business', 'sleeper']
         fare_prob = [0.95, 0.05]
@@ -71,6 +79,12 @@ class Passenger:
         Calculate the total fee needed to pay for the add-ons.
 
         :return: the total amount needed to pay for the add-ons
+        >>> p = Passenger('senior',150,['pet'])
+        >>> p.add_pay()
+        26
+        >>> p = Passenger('senior',150,['pet','bike','golf'])
+        >>> p.add_pay()
+        46
         """
         add = 0
         if self.add_ons:
@@ -232,11 +246,11 @@ if __name__ == '__main__':
 
     # simulate 10000 times for each scenarios
     # simulation for current fare with expected 210 passengers per day
-    result_fare = simulate_revenue_moreday(10000,fare,210)
+    result_fare = simulate_revenue_moreday(10,fare,210)
     # simulation for increase the fare by 10% with expected passengers lower by 2%
-    result_fare_increase = simulate_revenue_moreday(10000, fare_increase, 210*0.98)
+    result_fare_increase = simulate_revenue_moreday(10, fare_increase, 210*0.98)
     # simulation for decrease the fare by 10% with expected passengers higher by 2%
-    result_fare_decrease = simulate_revenue_moreday(10000, fare_decrease, 210*1.02)
+    result_fare_decrease = simulate_revenue_moreday(10, fare_decrease, 210*1.02)
 
     sns.distplot(result_fare, hist=False, kde=True,label = 'Current fare',color='r')
     plt.axvline(x = np.mean(result_fare),color='r')
