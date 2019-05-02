@@ -15,7 +15,7 @@ The revenue comes from selling train tickets and is determined by the number of 
 
 ### **Simulation's variables of uncertainty:**
 
-According to Amtrak Ridership Statistics from Rail Passengers Association(https://www.railpassengers.org/site/assets/files/1800/chm.pdf), distributions of Number of passengers, Travel distance and Fare type are made as follows:
+According to Amtrak Ridership Statistics from Rail Passengers Association(https://www.railpassengers.org/site/assets/files/1800/chm.pdf), distributions of Number of passengers, Travel distance and Fare type are assumed as follows:
 
 **Number of passengers:**
 
@@ -23,13 +23,13 @@ Champaign—Urbana Amtrak (CHM) served 153,470 passengers in 2018, including arr
 
 **Travel distance:**
 
-All the trips are divided into 9 intervals by its length. The lengths and proportions are as follows:
+All the trips are divided into 9 intervals by its length. The lengths and corresponding proportions are as follows:
 
 0-99, 100-199, 200-299, 300-399, 400-499, 500-599, 600-699, 700-799, 800+ miles
 
 5.9%, 89.9%, <0.1%, 1.3%, <0.1%, 0.2%, 0.8%, 0.3%, 1.5%
 
-Notice the nearest train station is in Mattoon (IL), with a length of 45 miles. One of the top city pairs by ridership is Champaign-New Orleans, with a length of 805 miles. So a reasonable guess is most of the trips in the 800+ miles interval are trips to New Orleans. The longest trip could be from Champaign to CA, with a length around 2200 miles.
+Notice that the nearest train station is in Mattoon (IL), with a length of 45 miles. One of the top city pairs by ridership is Champaign-New Orleans, with a length of 805 miles. So a reasonable guess is most of the trips in the 800+ miles interval are trips to New Orleans. The longest trip could be from Champaign to CA, with a length around 2200 miles.
 Thus redefine the intervals as:
 
 45-99, 100-199, 200-299, 300-399, 400-499, 500-599, 600-699, 700-799, 805, 806-2200
@@ -38,7 +38,7 @@ Define probability for intervals as:
 
 [0.059, 0.899, 0.0005, 0.013, 0.0005, 0.002, 0.008, 0.003, 0.014, 0.001]
 
-Assume within each interval, the exact travel distance follows a uniform distribution. Each travel distance range is randomly picked first with the above probabilities. Then randomly pick a value within an range as the travel distance for a passenger.
+Assume within each interval, the exact travel distance follows a uniform distribution. Each travel distance range is randomly picked first with the above probabilities. Then randomly pick a value within the range as the travel distance for a passenger.
 
 **Fare type:**
 
@@ -51,12 +51,12 @@ Each passenger will be randomly assigned to a group with corresponding probabili
 
 **Add-ons:**
 
-Assume the probability of carrying a pet, a bicycle and a golf clubs are 5%, 10%, 5%, respectively. 
+Each passenger is allowed to carry a bike, a pet and/or golf clubs to the trip. Assume the probability of carrying a pet, a bicycle and a golf clubs are 5%, 10%, 5%, respectively. 
 
 ### **Other facts:**
 1. The fee for carrying pet, bike and golf clubs are $26, $10 and $10, respectively. 
 2. Average fares per mile of business and sleeper are $0.166 and $0.283, respectively.
-3. The avenvue for one passenger is distance*fare*discount + add-on fee.
+3. The avenue of one passenger is: distance*fare*discount + add-on fee.
 
 ### **Assumptions:**
 1. The trains will not be full.
@@ -68,24 +68,22 @@ According to Transportation Research Board Report 95, the railroad fare elastici
 In order for Amtrak to increase its revenue, should it increase the fare rate to have more gain of a single ticket sold or decrease fare rate to attract more passengers?
 
 **Hypotheses 1:**
-If the fare is increased by 10%, although the number of passengers will shrink proportionally, the total expected revenue will increase.
+If the fare is increased by 10%, although the number of passengers will shrink proportionally, the expected daily revenue will increase.
 
 **Hypotheses 2:**
-Total expected revenue of increasing fare by 10% is larger than that of decreasing fare by 10%.
+Expected daily revenue of increasing fare by 10% is larger than that of decreasing fare by 10%.
 
 ### **Results:**
-The expected daily revenue with current fare is 6244.53; the expected daily revenue with increasing fare by 10% is 6696.59; the expected daily revenue with decreasing fare by 10% is 5806.68.
-1. Increase fare generates the highest revenue;
-2. Decrease fare generates the lowest revenue;
-3. The revenue from the current fare is somewhere in the middle.
+By simulating 10000 times for each scenarios, the results are: The expected daily revenue with current fare rate is 6244.53; the expected daily revenue with increasing fare rate by 10% is 6696.59; the expected daily revenue with decreasing fare rate by 10% is 5806.68.
+
+Increase fare generates the highest revenue and decrease fare generates the lowest revenue. The revenue from the current fare is somewhere in the middle.
 
 
 ### **Limitations and Future Work:**
 1. Travel distance should estimated by the distance among train stations.
 2. There are other types of fare, like saver fare.
-3. Refunds are not considered. 
-4. Some of the train routine do not provide service for all of the three add-ons.
-5. The elasticity used may be out of date.
+3. Some of the train routine do not provide service for all of the three add-ons.
+4. The elasticity used may be out of date.
 
 ### **Data Sources:**
 https://www.railpassengers.org/site/assets/files/1800/chm.pdf
