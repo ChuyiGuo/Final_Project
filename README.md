@@ -74,10 +74,14 @@ If the fare is increased by 10%, although the number of passengers will shrink p
 Expected daily revenue of increasing fare by 10% is larger than that of decreasing fare by 10%.
 
 ### **Results:**
-By simulating 10000 times for each scenarios, the results are: The expected daily revenue with current fare rate is 6244.53; the expected daily revenue with increasing fare rate by 10% is 6696.59; the expected daily revenue with decreasing fare rate by 10% is 5806.68.
+After 10000 simulations for each scenarios, the expected daily revenue with current fare rate is 6244.53; the expected daily revenue with increasing fare rate by 10% is 6696.59; the expected daily revenue with decreasing fare rate by 10% is 5806.68.
 
-Increase fare generates the highest revenue and decrease fare generates the lowest revenue. The revenue from the current fare is somewhere in the middle.
+The curve is the density plot and the vertical line is the mean for each scenario.
 
+![](Simulation_results.jpeg)
+
+### **Conclusion:**
+Increasing fare rate by 10% generates the highest revenue and decreasing fare rate by 10% generates the lowest revenue. The revenue from the current fare rate is somewhere in the middle.
 
 ### **Limitations and Future Work:**
 1. Travel distance should estimated by the distance among train stations.
