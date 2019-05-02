@@ -13,19 +13,20 @@ import seaborn as sns
 
 # simulate passenger info
 def age_group() ->str:
-        """ Simulate an age_group for a passenger with pre-defined probabilities.
+    """ Simulate an age_group for a passenger with pre-defined probabilities.
         According to Amtrak's, each passenger are divided into different passenger type by age.
         Each passenger belongs to adult, senior or child with probabilities of
         15%, 72.6% and 12.4%, respectively.
 
-        :return: 'adult', 'senior' or 'child'
-        >>> age_group() in ['adult', 'senior' ,'child']
-        True
-        """
-        age_prob = [0.15, 0.726, 0.124]
-        group = ['child', 'adult', 'senior']
-        age_group = np.random.choice(group, 1, p=age_prob)[0]
-        return age_group
+    :return: 'adult', 'senior' or 'child'
+    >>> age_group() in ['adult', 'senior' ,'child']
+    True
+    """
+    age_prob = [0.15, 0.726, 0.124]
+    group = ['child', 'adult', 'senior']
+    age_group = np.random.choice(group, 1, p=age_prob)[0]
+    return age_group
+
 
 def distance():
     """Simulate an travel distance for a passenger with pre-defined probabilities.
