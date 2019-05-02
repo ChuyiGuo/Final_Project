@@ -11,11 +11,83 @@ from random import randint
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# simulate passenger info
+def age_group() ->str:
+        """ Simulate an age_group for a passenger with pre-defined probabilities.
+        According to Amtrak's, each passenger are divided into different passenger type by age.
+        Each passenger belongs to adult, senior or child with probabilities of
+        15%, 72.6% and 12.4%, respectively.
+
+        :return: 'adult', 'senior' or 'child'
+        >>> age_group() in ['adult', 'senior' ,'child']
+        True
+        """
+        age_prob = [0.15, 0.726, 0.124]
+        group = ['child', 'adult', 'senior']
+        age_group = np.random.choice(group, 1, p=age_prob)[0]
+        return age_group
+
+def distance():
+    """Simulate an travel distance for a passenger with pre-defined probabilities.
+    First divided the travel distance in to the following intervals:
+    45-99, 100-199, 200-299, 300-399, 400-499, 500-599, 600-699, 700-799, 805, 806-2200
+    Then assign the following probabilities to each interval:
+    [0.059, 0.899, 0.0005, 0.013, 0.0005, 0.002, 0.008, 0.003, 0.014, 0.001]
+    The distance range is picked by the given probabilities.
+    Assume within each distance range, the values are uniformly distributed.
+    After getting the distance range, randomly pick a value as the travel distance from that range.
+
+    :return: travel distance for a passenger
+    >>> 45<=distance()<=2200
+    True
+    """
+    distance_prob = [0.059, 0.899, 0.0005, 0.013, 0.0005, 0.002, 0.008, 0.003, 0.014, 0.001]
+    distance_group = [99, 199, 299, 399, 499, 599, 699, 799, 805, 2200]
+    distance_range = np.random.choice(distance_group, 1, p=distance_prob)[0]
+    if 199 <= distance_range <=799:
+        distance = randint(distance_range - 99, distance_range)
+    elif distance_range==99:
+        distance = randint(45, distance_range)
+    elif distance_range==805:
+        distance=805
+    else:
+        distance = randint(806, distance_range)
+    return distance
+
+def add_ons() ->list:
+    """Simulate add-on items for a passenger with pre-defined probabilities.
+    Each passenger is allowed to add a bike, pet or golf clubs to the trip.
+    Bike, pet and golf clubs can be added at the same time, but the max quantity for each is one.
+    Add-ons are independent of each other.
+    The probabilities of carrying a pet, a bike and a golf club is 5%, 10%, 5%, respectively.
+
+    :return: add-on items for a passenger
+    >>> add_ons() in [[],['pet'],['bike'],['golf'],['pet','bike'],['pet','golf'],['bike','golf'],['pet','bike','golf']]
+    True
+    """
+    add = []
+    pet_prob = [0.05, 0.95]
+    bike_prob = [0.1, 0.9]
+    golf_prob = [0.05, 0.95]
+
+    if np.random.choice([1, 0], 1, p=pet_prob) == [1]:
+        add.append('pet')
+    if np.random.choice([1, 0], 1, p=bike_prob) == [1]:
+        add.append('bike')
+    if np.random.choice([1, 0], 1, p=golf_prob) == [1]:
+        add.append('golf')
+    return add
+
 # define class
 class Passenger:
 
     def __init__(self, age_group, distance, add_ons):
+        """
 
+        :param age_group: 'adult', 'senior' or 'child'
+        :param distance: travel distance for a passenger
+        :param add_ons: add-on items for a passenger
+        """
         self.age_group = age_group
         self.distance = distance
         self.add_ons = add_ons
@@ -96,73 +168,6 @@ class Passenger:
                 add = add + 10
         return add
 
-
-# simulate passenger info
-def age_group() ->str:
-        """ Simulate an age_group for a passenger with pre-defined probabilities.
-        According to Amtrak's, each passenger are divided into different passenger type by age.
-        Each passenger belongs to adult, senior or child with probabilities of
-        15%, 72.6% and 12.4%, respectively.
-
-        :return: 'adult', 'senior' or 'child'
-        >>> age_group() in ['adult', 'senior' ,'child']
-        True
-        """
-        age_prob = [0.15, 0.726, 0.124]
-        group = ['child', 'adult', 'senior']
-        age_group = np.random.choice(group, 1, p=age_prob)[0]
-        return age_group
-
-def distance():
-    """Simulate an travel distance for a passenger with pre-defined probabilities.
-    First divided the travel distance in to the following intervals:
-    45-99, 100-199, 200-299, 300-399, 400-499, 500-599, 600-699, 700-799, 805, 806-2200
-    Then assign the following probabilities to each interval:
-    [0.059, 0.899, 0.0005, 0.013, 0.0005, 0.002, 0.008, 0.003, 0.014, 0.001]
-    The distance range is picked by the given probabilities.
-    Assume within each distance range, the values are uniformly distributed.
-    After getting the distance range, randomly pick a value as the travel distance from that range.
-
-    :return: travel distance for a passenger
-    >>> 45<=distance()<=2200
-    True
-    """
-    distance_prob = [0.059, 0.899, 0.0005, 0.013, 0.0005, 0.002, 0.008, 0.003, 0.014, 0.001]
-    distance_group = [99, 199, 299, 399, 499, 599, 699, 799, 805, 2200]
-    distance_range = np.random.choice(distance_group, 1, p=distance_prob)[0]
-    if 99 < distance_range <=799:
-        distance = randint(distance_range - 99, distance_range)
-    elif distance_range==99:
-        distance = randint(45, distance_range)
-    elif distance_range==805:
-        distance=805
-    else:
-        distance = randint(806, distance_range)
-    return distance
-
-def add_ons() ->list:
-    """Simulate add-on items for a passenger with pre-defined probabilities.
-    Each passenger is allowed to add a bike, pet or golf clubs to the trip.
-    Bike, pet and golf clubs can be added at the same time, but the max quantity for each is one.
-    Add-ons are independent of each other.
-    The probabilities of carrying a pet, a bike and a golf club is 5%, 10%, 5%, respectively.
-
-    :return: add-on items for a passenger
-    >>> add_ons() in [[],['pet'],['bike'],['golf'],['pet','bike'],['pet','golf'],['bike','golf'],['pet','bike','golf']]
-    True
-    """
-    add = []
-    pet_prob = [0.05, 0.95]
-    bike_prob = [0.1, 0.9]
-    golf_prob = [0.05, 0.95]
-
-    if np.random.choice([1, 0], 1, p=pet_prob) == [1]:
-        add.append('pet')
-    if np.random.choice([1, 0], 1, p=bike_prob) == [1]:
-        add.append('bike')
-    if np.random.choice([1, 0], 1, p=golf_prob) == [1]:
-        add.append('golf')
-    return add
 
 def simulate_num_passenger(mean):
     """ simulate the daily passenger number for Champaign-Urbana Amtrak
@@ -246,11 +251,11 @@ if __name__ == '__main__':
 
     # simulate 10000 times for each scenarios
     # simulation for current fare with expected 210 passengers per day
-    result_fare = simulate_revenue_moreday(10,fare,210)
+    result_fare = simulate_revenue_moreday(10000,fare,210)
     # simulation for increase the fare by 10% with expected passengers lower by 2%
-    result_fare_increase = simulate_revenue_moreday(10, fare_increase, 210*0.98)
+    result_fare_increase = simulate_revenue_moreday(10000, fare_increase, 210*0.98)
     # simulation for decrease the fare by 10% with expected passengers higher by 2%
-    result_fare_decrease = simulate_revenue_moreday(10, fare_decrease, 210*1.02)
+    result_fare_decrease = simulate_revenue_moreday(10000, fare_decrease, 210*1.02)
 
     sns.distplot(result_fare, hist=False, kde=True,label = 'Current fare',color='r')
     plt.axvline(x = np.mean(result_fare),color='r')
