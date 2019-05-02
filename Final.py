@@ -266,9 +266,9 @@ if __name__ == '__main__':
     plt.axvline(x=np.mean(result_fare_decrease), color='blue')
     plt.show()
 
-    print("The mean of daily revenue with current fare is " + str(round(np.mean(result_fare),2)) +"\n" +
-          "The mean of daily revenue with increasing fare by 10% is " + str(round(np.mean(result_fare_increase),2)) + "\n" +
-          "The mean of daily revenue with decreasing fare by 10% is " + str(round(np.mean(result_fare_decrease),2)))
+    print("The mean of daily revenue with current fare rate is " + str(round(np.mean(result_fare),2)) +"\n" +
+          "The mean of daily revenue with increasing fare rate by 10% is " + str(round(np.mean(result_fare_increase),2)) + "\n" +
+          "The mean of daily revenue with decreasing fare rate by 10% is " + str(round(np.mean(result_fare_decrease),2)))
 
 
 
