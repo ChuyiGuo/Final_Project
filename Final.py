@@ -28,7 +28,7 @@ def age_group() ->str:
     return age_group
 
 
-def distance():
+def distance() ->int:
     """Simulate an travel distance for a passenger with pre-defined probabilities.
     First divided the travel distance in to the following intervals:
     45-99, 100-199, 200-299, 300-399, 400-499, 500-599, 600-699, 700-799, 805, 806-2200
@@ -170,7 +170,7 @@ class Passenger:
         return add
 
 
-def simulate_num_passenger(mean):
+def simulate_num_passenger(mean: int) ->int:
     """ simulate the daily passenger number for Champaign-Urbana Amtrak
     The number of passengers follows Poisson distribution
 
@@ -204,7 +204,7 @@ def get_fare_pay(fare: dict, distance: int, fare_type: str, discount: float) -> 
     return revenue
 
 
-def simulate_revenue_oneday(fare,num):
+def simulate_revenue_oneday(fare: dict,num: int) ->float:
     """ calculate the daily revenue, including price for the tickets and fee for the add-on items.
 
     :param fare: fare rate for business and sleeper fare type
@@ -218,7 +218,7 @@ def simulate_revenue_oneday(fare,num):
         total_revenue += revenue
     return round(total_revenue,2)
 
-def simulate_revenue_moreday(times,fare,num):
+def simulate_revenue_moreday(times: int,fare: dict,num: int) ->float:
     """calculate the daily revenue, including price for the tickets and fee for the add-on items.
 
     :param times: times for repeating the simulate_revenue_oneday process
