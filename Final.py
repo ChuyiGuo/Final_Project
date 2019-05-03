@@ -219,7 +219,7 @@ def simulate_revenue_oneday(fare: dict,num: int) ->float:
     return round(total_revenue,2)
 
 def simulate_revenue_moreday(times: int,fare: dict,num: int) ->float:
-    """calculate the daily revenue, including price for the tickets and fee for the add-on items.
+    """calculate the daily revenue for N times, including price for the tickets and fee for the add-on items.
 
     :param times: times for repeating the simulate_revenue_oneday process
     :param fare: fare rate for business and sleeper fare type
