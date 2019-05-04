@@ -56,7 +56,7 @@ Each passenger is allowed to carry a bike, a pet and/or golf clubs to the trip. 
 ### **Other facts:**
 1. The fee for carrying pet, bike and golf clubs are $26, $10 and $10, respectively. 
 2. Average fares per mile of business and sleeper are $0.166 and $0.283, respectively.
-3. The avenue of one passenger is: distance*fare*discount + add-on fee.
+3. The avenue of one passenger is: distance * fare * discount + add-on fee.
 
 ### **Assumptions:**
 1. The trains will not be full.
