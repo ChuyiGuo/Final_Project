@@ -196,16 +196,21 @@ def simulate_revenue_oneday(fare: dict,num: int) ->float:
         fare_price.append(fare[passenger.fare_type()])
         disc.append(passenger.discount())
         add_fee.append(passenger.add_pay())
-    total_revenue = np.asarray(dist)*np.asarray(fare_price)*np.asarray(disc)+np.asarray(add_fee)
+    total_revenue = np.asarray(dist) * np.asarray(fare_price) * np.asarray(disc) + np.asarray(add_fee)
     return round(sum(total_revenue),2)
 
 def simulate_revenue_moreday(times: int,fare: dict,num: int) ->float:
     """calculate the daily revenue for N times, including price for the tickets and fee for the add-on items.
+    For each time, simulate a number of passengers for a day.
 
     :param times: times for repeating the simulate_revenue_oneday process
     :param fare: fare rate for business and sleeper fare type
     :param num: number of expected number of passengers for a day
     :return: list with each day's revenue stored
+    >>> fare = {'business': 0.166, 'sleeper': 0.283}
+    >>> ans = simulate_revenue_moreday(10,fare,5)
+    >>> len(ans) == 10
+    True
     """
     sim_revenue = []
     for i in range(times):
@@ -233,11 +238,11 @@ if __name__ == '__main__':
 
     # simulate 10000 times for each scenarios
     # simulation for current fare with expected 210 passengers per day
-    result_fare = simulate_revenue_moreday(1000,fare,210)
+    result_fare = simulate_revenue_moreday(10000,fare,210)
     # simulation for increase the fare by 10% with expected passengers lower by 2%
-    result_fare_increase = simulate_revenue_moreday(1000, fare_increase, 210*0.98)
+    result_fare_increase = simulate_revenue_moreday(10000, fare_increase, 210*0.98)
     # simulation for decrease the fare by 10% with expected passengers higher by 2%
-    result_fare_decrease = simulate_revenue_moreday(1000, fare_decrease, 210*1.02)
+    result_fare_decrease = simulate_revenue_moreday(10000, fare_decrease, 210*1.02)
 
     sns.distplot(result_fare, hist=False, kde=True,label = 'Current fare',color='r')
     plt.axvline(x = np.mean(result_fare),color='r')
