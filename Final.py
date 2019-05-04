@@ -175,7 +175,7 @@ def simulate_num_passenger(mean: int) ->int:
     The number of passengers follows Poisson distribution
 
     :param mean: expected daily passenger number
-    :return: number of passengers for a day
+    :return: number of passengers for that day
     """
     return np.random.poisson(mean, 1)
 
@@ -183,7 +183,7 @@ def simulate_revenue_oneday(fare: dict,num: int) ->float:
     """ calculate the daily revenue, including price for the tickets and fee for the add-on items.
 
     :param fare: fare rate for business and sleeper fare type
-    :param num: number of expected number of passengers for a day
+    :param num: number of passengers for that day
     :return: daily revenue
     """
     dist = []
